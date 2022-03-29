@@ -1,14 +1,20 @@
-from aiogram import Bot, types
 import logging
 from aiogram import types
-from aiogram.dispatcher import Dispatcher
-from aiogram.utils import executor
 from aiogram.utils.executor import start_webhook
-from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
+from aiogram.contrib.middlewares.logging import LoggingMiddleware
+from config import bot, dp, WEBHOOK_PATH, WEBHOOK_URL, WEBAPP_PORT
 
 
 
+async def on_startup(dp):
+    await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
+    logging.warning('Вебхук подключён.')
+    #await database.connect() это бд той статьи 
 
+
+async def on_shutdown(dp):
+    logging.warning('Вебхук отключён.')
+    #await database.disconnect() это бд той статьи
 
 
 @dp.message_handler(commands=['start'])
@@ -44,6 +50,6 @@ if __name__ == '__main__':
         skip_updates=True,
         on_startup=on_startup,
         on_shutdown=on_shutdown,
-        host=WEBAPP_HOST,
+        host='0.0.0.0',
         port=WEBAPP_PORT,
     )
