@@ -1,6 +1,3 @@
 aiogram
-aiosignal
-async-timeout
-asyncpg
-attrs
+aiohttp[speedups]
 
