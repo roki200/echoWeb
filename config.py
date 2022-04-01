@@ -11,3 +11,7 @@ dp = Dispatcher(bot)
 WEBHOOK_PATH = f'/webhook/{BOT_TOKEN}'
 WEBHOOK_URL = f"https://{os.getenv('HEROKU_APP_NAME')}.herokuapp.com{WEBHOOK_PATH}"
 WEBAPP_PORT = int(os.getenv('PORT'))
+
+WEBAPP_HOST = '0.0.0.0'
+WEBAPP_PORT = os.getenv('PORT', default=8000)
+DB_URL = os.getenv('DATABASE_URL')
