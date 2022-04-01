@@ -3,7 +3,7 @@ from aiogram import types
 from aiogram.utils.executor import start_webhook
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from config import bot, dp, WEBHOOK_PATH, WEBHOOK_URL, WEBAPP_PORT
-
+from db import database
 
 
 async def on_startup(dp):
